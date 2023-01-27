@@ -70,12 +70,19 @@ class PetListFragment : Fragment(), MainNavigator {
             }
         })
 
-        viewModel.articalsLoadError.observe(viewLifecycleOwner, Observer { isError ->
+        viewModel.loadError.observe(viewLifecycleOwner, Observer { isError ->
             isError?.let {
                 binding.listError.text = resources.getString(R.string.txt_loading_error)
                 binding.listError.visibility = if (it) View.VISIBLE else View.GONE
             }
         })
+        viewModel.isValidTime.observe(viewLifecycleOwner, Observer { isError ->
+            isError?.let {
+                binding.listError.text = resources.getString(R.string.txt_invalid_time)
+                binding.listError.visibility = if (it) View.VISIBLE else View.GONE
+            }
+        })
+
 
         viewModel.loading.observe(viewLifecycleOwner, Observer { isLoading ->
             isLoading?.let {

@@ -2,5 +2,6 @@
     <string name="app_name">PetsApp</string>
 
     <string name="txt_loading_error">An error occurred while loading data</string>
+    <string name="txt_invalid_time">You can access in Monday-Fraday 9 am to 6 pm</string>
 
 </resources>
