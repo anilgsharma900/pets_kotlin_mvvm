@@ -46,8 +46,8 @@ class PetAdapter(var petList: ArrayList<PetModel>) :
         }
     }
 
-    fun updatePets(petList: List<PetModel>, viewModel: PetListViewModel) {
-        petList.addAll(petList)
+    fun updatePets(pets: List<PetModel>, viewModel: PetListViewModel) {
+        petList.addAll(pets)
         listViewModel = viewModel
         notifyDataSetChanged()
     }
