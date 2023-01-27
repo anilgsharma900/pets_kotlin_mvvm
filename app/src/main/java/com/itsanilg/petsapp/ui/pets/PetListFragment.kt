@@ -10,12 +10,14 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.itsanilg.petsapp.R
 import com.itsanilg.petsapp.databinding.FragmentPetListBinding
+import com.itsanilg.petsapp.model.PetModel
+import com.itsanilg.petsapp.ui.pet_details.PetDetailsFragment
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 
-class PetListFragment : Fragment() {
+class PetListFragment : Fragment(), MainNavigator {
     private var _binding: FragmentPetListBinding? = null
 
     private val binding get() = _binding!!
@@ -42,6 +44,7 @@ class PetListFragment : Fragment() {
 
 
         fecthData(this)
+        viewModel.setMainNavigator(this)
 
         binding.rvPetList.apply {
             layoutManager = layout
@@ -89,5 +92,14 @@ class PetListFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    override fun onItemClick(petModel: PetModel) {
+        val bundle: Bundle = Bundle()
+        bundle.putString("url", petModel.content_url)
+        val petDetailsFragment = PetDetailsFragment.newInstance();
+        petDetailsFragment.arguments = bundle
+        requireActivity().supportFragmentManager.beginTransaction()
+            .add(R.id.container, petDetailsFragment).addToBackStack(null).commit()
     }
 }

@@ -19,6 +19,9 @@ class PetListViewModel : ViewModel() {
     val loading = MutableLiveData<Boolean>()
     lateinit var navigator: MainNavigator
 
+    fun setMainNavigator(mainNavigator: MainNavigator) {
+        navigator = mainNavigator
+    }
 
     fun fetchData(context: Fragment) {
         viewModelScope.launch(Dispatchers.Main) {
